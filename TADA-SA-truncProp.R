@@ -447,7 +447,7 @@ for (cutq in cutq_final) {
           }
           
           studyData_long_event_boot <- studyData_long_event_boot %>%
-            mutate(baseline_survival = exp(-hazard))
+            mutate(censoring_survival   = pmax(exp(-hazard * exp(linear_predictor)), 1e-6))
           if (any(is.na(studyData_long_event_boot$baseline_survival)) ||
               any(is.na(studyData_long_event_boot$censoring_survival)) ||
               any(studyData_long_event_boot$censoring_survival <= 0) ||
@@ -457,7 +457,7 @@ for (cutq in cutq_final) {
           }
           
           studyData_long_event_boot <- studyData_long_event_boot %>%
-            mutate(time_varying_weights_bootstrap = pmin(baseline_survival / censoring_survival, 1e6))
+            mutate(time_varying_weights_bootstrap = pmin(1 / censoring_survival, 1e6))
           if (any(is.na(studyData_long_event_boot$time_varying_weights_bootstrap)) ||
               any(studyData_long_event_boot$time_varying_weights_bootstrap <= 0) ||
               any(!is.finite(studyData_long_event_boot$time_varying_weights_bootstrap)) ) {
