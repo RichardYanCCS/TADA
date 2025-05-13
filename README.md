@@ -3,7 +3,7 @@ R codes to implement the simulation study and real case study analysis in "Targe
 
 Here is a brief introduction to each R file. Comprehensive comments provide detailed instructions in each file. Setting the relative working path for storing results and loading data is necessary.
 
-- `assistFunctions.R`: to define key data generation functions for simulation under various scenarios.
+- `assistFunctions.R`: data generation functions for simulation in various scenarios.
 - `TADA-simulation.R`: to conduct the main simulation across scenarios and obtain bias and coverage results.
 - `TADA-SA-abnormalValue.R`: to perform sensitivity analysis under abnormal value settings in the target population.
 - `TADA-SA-sampleSize.R`: to perform sensitivity analysis under different source sample sizes.
